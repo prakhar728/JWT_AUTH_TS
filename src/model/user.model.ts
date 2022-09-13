@@ -1,4 +1,4 @@
-import { prop,getModelForClass,modelOptions,Severity,pre,DocumentType } from "@typegoose/typegoose";
+import { prop,getModelForClass,modelOptions,Severity,pre,DocumentType, index } from "@typegoose/typegoose";
 import argon2 from "argon2";
 import {nanoid} from "nanoid";
 import log from "../utils/logger";
@@ -11,6 +11,7 @@ const hash = await argon2.hash(this.password)
 this.password =hash;
 }
 )
+@index({email:1}) 
 @modelOptions({
     schemaOptions:{
         timestamps:true
